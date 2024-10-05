@@ -31,7 +31,7 @@ jobs:
           MYSQL_USER: test_user
           MYSQL_PASSWORD: test_password
         options: >-
-          --health-cmd "mysqladmin ping --silent"
+          --health-cmd "mysqladmin ping --silent -uroot -proot_password"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
