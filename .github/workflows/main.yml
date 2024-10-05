@@ -57,7 +57,7 @@ jobs:
         echo '---------------------------'
         ls ${LD_LIBRARY_PATH}
         echo '---------------------------'
-        sudo --preserve-env=LD_LIBRARY_LIST ./exe/.libs/odbcinst -i -d -f MariaDB_odbc_driver_template.ini
+        sudo --preserve-env=LD_LIBRARY_PATH ./exe/.libs/odbcinst -i -d -f MariaDB_odbc_driver_template.ini
         ./exe/.libs/odbcinst  -i -s -h -f MariaDB_odbc_data_source_template.ini
         export LD_LIBRARY_PATH=./DriverManager/.libs 
         echo 'SELECT VERSION();' | ./exe/.libs/isql MariaDB-server -b
