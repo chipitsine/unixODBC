@@ -56,7 +56,7 @@ jobs:
         mysql -u root -proot_password -h 127.0.0.1 -e 'SELECT VERSION();'
         sudo -E ./exe/.libs/odbcinst -i -d -f MariaDB_odbc_driver_template.ini
         ./exe/.libs/odbcinst  -i -s -h -f MariaDB_odbc_data_source_template.ini
-        echo 'SELECT VERSION();' | ./exe/.libs/isql MariaDB-server -b
+        echo 'SELECT VERSION();' | ./exe/.libs/isql -v MariaDB-server -b
 
 
 
