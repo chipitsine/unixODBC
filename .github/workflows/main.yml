@@ -23,6 +23,20 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+      mariadb:
+        image: mariadb:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_password
+        options: >-
+          --health-cmd "mysqladmin ping --silent"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 3306:3306
     steps:
     - uses: actions/checkout@v4
     - name: Install apt dependencies
@@ -36,7 +50,7 @@ jobs:
     - name: build
       run: |
         make 
-    - name: pg test
+    - name: mariadb test
       run: |
-        PGPASSWORD=postgres PGDATABASE=template1 PGHOST=127.0.0.1 PGUSER=postgres psql -c 'SELECT VERSION();'
+        mysql -u root -proot_password -h 127.0.0.1 -e 'SELECT VERSION();'
 
