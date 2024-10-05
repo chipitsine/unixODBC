@@ -46,7 +46,7 @@ jobs:
     - name: configure
       run: |
         autoreconf -iv
-        CC=${{ matrix.cc }} ./configure
+        CC=${{ matrix.cc }} ./configure --prefix=/ --exec-prefix=/
     - name: build
       run: |
         make 
