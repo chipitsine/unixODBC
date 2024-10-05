@@ -42,7 +42,7 @@ jobs:
     - name: Install apt dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libltdl-dev
+        sudo apt-get install -y libltdl-dev odbc-mariadb odbc-postgresql
     - name: configure
       run: |
         autoreconf -iv
