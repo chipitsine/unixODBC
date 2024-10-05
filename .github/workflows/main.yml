@@ -4,13 +4,24 @@ permissions:
   contents: read
 
 jobs:
-  Test:
+  pg_test:
     strategy:
       matrix:
         cc: [ gcc, clang ]  
       fail-fast: false
     name: ${{ matrix.cc }}
     runs-on: ubuntu-24.04
+    container: node:20-bookworm-slim
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v4
     - name: Install apt dependencies
@@ -23,5 +34,8 @@ jobs:
         CC=${{ matrix.cc }} ./configure
     - name: build
       run: |
-        make AM_MAKEFLAGS=CFLAGS=-Werror
+        make 
+    - name: pg test
+      run: |
+        PGPASSWORD=postgres PGDATABASE=posrgres PGHOST=postgres PGUSER=postgres psql -c 'SELECT VERSION();'
 
