@@ -54,6 +54,9 @@ jobs:
       run: |
         mysql -u root -proot_password -h 127.0.0.1 -e 'SELECT VERSION();'
         export LD_LIBRARY_PATH=`pwd`/./odbcinst/.libs
+        echo '---------------------------'
+        ls %{LD_LIBRARY_PATH}
+        echo '---------------------------'
         sudo ./exe/.libs/odbcinst -i -d -f MariaDB_odbc_driver_template.ini
         ./exe/.libs/odbcinst  -i -s -h -f MariaDB_odbc_data_source_template.ini
         export LD_LIBRARY_PATH=./DriverManager/.libs 
