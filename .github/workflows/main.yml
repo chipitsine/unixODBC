@@ -38,5 +38,5 @@ jobs:
         make 
     - name: pg test
       run: |
-        PGPASSWORD=postgres PGDATABASE=posrgres PGHOST=127.0.0.1 PGUSER=postgres psql -c 'SELECT VERSION();'
+        PGPASSWORD=postgres PGDATABASE=template1 PGHOST=127.0.0.1 PGUSER=postgres psql -c 'SELECT VERSION();'
 
