@@ -51,8 +51,13 @@ jobs:
       run: |
         make
         sudo make install
-    - name: mariadb test
+    - name: mariadb test1
       run: |
         sudo -E ./exe/.libs/odbcinst -i -d -f MariaDB_odbc_driver_template.ini
+    - name: mariadb test2
+      run: |
         ./exe/.libs/odbcinst  -i -s -h -f MariaDB_odbc_data_source_template.ini
+    - name: mariadb test3
+      run: |
         echo 'SELECT VERSION();' | ./exe/.libs/isql -v MariaDB-server -b
+        
