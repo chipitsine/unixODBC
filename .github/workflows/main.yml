@@ -57,7 +57,8 @@ jobs:
         git clone https://github.com/mazbrili/unixodbc-gui-qt
         cd unixodbc-gui-qt
         autoreconf -iv
-        ./configure
+        ./configure || cat config.log
+        exit 1
         cd gtrtstQ4
         make
         sudo make install
