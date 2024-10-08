@@ -52,6 +52,14 @@ jobs:
         make
         sudo make install
 
+    - name: gtt
+      run: |
+        git clone https://github.com/mazbrili/unixodbc-gui-qt
+        cd gtrtstQ4
+        automake
+        make
+        sudo make install
+
     - name: ttt
       run: |
        svn checkout https://svn.code.sf.net/p/unixodbc-test/code/ unixodbc-test-code
