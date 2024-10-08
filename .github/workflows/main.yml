@@ -42,7 +42,7 @@ jobs:
     - name: Install apt dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libltdl-dev odbc-mariadb odbc-postgresql subversion
+        sudo apt-get install -y libltdl-dev odbc-mariadb odbc-postgresql subversion qmake6
     - name: configure
       run: |
         autoreconf -iv
