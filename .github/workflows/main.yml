@@ -55,8 +55,10 @@ jobs:
     - name: gtt
       run: |
         git clone https://github.com/mazbrili/unixodbc-gui-qt
-        cd unixodbc-gui-qt/gtrtstQ4
-        automake
+        cd unixodbc-gui-qt
+        autoreconf -iv
+        ./configure
+        cd gtrtstQ4
         make
         sudo make install
 
