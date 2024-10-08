@@ -47,23 +47,21 @@ jobs:
       run: |
         autoreconf -iv
         CC=${{ matrix.cc }} CFLAGS="-ggdb -fsanitize=address" ./configure --prefix=/ --exec-prefix=/
-    - name: ttt
-      run: |
-       svn checkout https://svn.code.sf.net/p/unixodbc-test/code/ c
-       cd unixodbc-test-code/AutoTests
-       qmake
-       make
     - name: build
       run: |
         make
         sudo make install
+
+    - name: ttt
+      run: |
+       svn checkout https://svn.code.sf.net/p/unixodbc-test/code/ unixodbc-test-code
+       cd unixodbc-test-code/AutoTests
+       qmake
+       make
+        
     - name: mariadb test1
       run: |
         sudo -E ./exe/.libs/odbcinst -i -d -f MariaDB_odbc_driver_template.ini
-    - name: mariadb test2
-      run: |
         ./exe/.libs/odbcinst  -i -s -h -f MariaDB_odbc_data_source_template.ini
-    - name: mariadb test3
-      run: |
         echo 'SELECT VERSION();' | ./exe/.libs/isql -v MariaDB-server -b
         
