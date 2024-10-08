@@ -56,7 +56,7 @@ jobs:
       run: |
        svn checkout https://svn.code.sf.net/p/unixodbc-test/code/ unixodbc-test-code
        cd unixodbc-test-code/AutoTests
-       qmake
+       qmake6
        make
         
     - name: mariadb test1
