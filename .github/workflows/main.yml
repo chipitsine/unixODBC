@@ -65,7 +65,7 @@ jobs:
 
     - name: ttt
       run: |
-       svn checkout https://svn.code.sf.net/p/unixodbc-test/code/ unixodbc-test-code
+       git clone https://github.com/chipitsine/unixodbc-test-code
        cd unixodbc-test-code/TestFarm
        qmake6
        make
