@@ -52,21 +52,21 @@ jobs:
         make
         sudo make install
 
-    - name: gtt
-      run: |
-        git clone https://github.com/mazbrili/unixodbc-gui-qt
-        cd unixodbc-gui-qt
-        autoreconf -iv
-        ./configure || cat config.log
-        exit 1
-        cd gtrtstQ4
-        make
-        sudo make install
+ #   - name: gtt
+ #     run: |
+ #       git clone https://github.com/mazbrili/unixodbc-gui-qt
+ #       cd unixodbc-gui-qt
+ #       autoreconf -iv
+ #       ./configure || cat config.log
+ #       exit 1
+ #       cd gtrtstQ4
+ #       make
+ #       sudo make install
 
     - name: ttt
       run: |
        svn checkout https://svn.code.sf.net/p/unixodbc-test/code/ unixodbc-test-code
-       cd unixodbc-test-code/AutoTests
+       cd unixodbc-test-code/TestFarm
        qmake6
        make
         
