@@ -68,7 +68,7 @@ jobs:
        git clone https://github.com/chipitsine/unixodbc-test-code
        cd unixodbc-test-code/TestFarm
        qmake6
-       make
+       CFLAGS='-ggdb -fsanitize=address' make
         
     - name: mariadb test1
       run: |
