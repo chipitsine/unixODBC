@@ -59,9 +59,17 @@ jobs:
         sudo -E ./exe/.libs/odbcinst -i -d -f .github/MariaDB_odbc_driver_template.ini
         ./exe/.libs/odbcinst  -i -s -h -f .github/MariaDB_odbc_data_source_template.ini
         echo 'SELECT VERSION();' | ./exe/.libs/isql -v MariaDB-server -b
+        echo 'SELLECT VERSION();' | ./exe/.libs/isql -v MariaDB-server -b
     - name: postgres smoke test
       run: |
         ./exe/.libs/odbcinst  -i -s -h -f .github/postgres_odbc.ini 
         echo 'SELECT VERSION();' | ./exe/.libs/isql -v PostgreSQL-server -b
 
+
+    - name: ttt
+      run: |
+       git clone https://github.com/chipitsine/unixodbc-test-code
+       cd unixodbc-test-code/TestFarm
+       qmake6
+       CFLAGS='-ggdb -fsanitize=address' make
 
