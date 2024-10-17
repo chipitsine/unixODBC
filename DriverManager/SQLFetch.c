@@ -169,8 +169,6 @@ SQLRETURN SQLFetch( SQLHSTMT statement_handle )
      * check states
      */
 
-    thread_protect( SQL_HANDLE_STMT, statement );
-
     if ( statement -> state == STATE_S1 ||
             statement -> state == STATE_S2 ||
             statement -> state == STATE_S3 )
@@ -326,6 +324,8 @@ SQLRETURN SQLFetch( SQLHSTMT statement_handle )
         return function_return_nodrv( SQL_HANDLE_STMT, statement, SQL_ERROR );
     }
 
+    thread_protect( SQL_HANDLE_STMT, statement );
+
     if ( ret == SQL_STILL_EXECUTING )
     {
         statement -> interupted_func = SQL_API_SQLFETCH;
@@ -355,5 +355,6 @@ SQLRETURN SQLFetch( SQLHSTMT statement_handle )
                 statement -> msg );
     }
 
+    thread_release( SQL_HANDLE_STMT, statement );
     return function_return( SQL_HANDLE_STMT, statement, ret, DEFER_R3 );
 }
