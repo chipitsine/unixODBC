@@ -5,16 +5,13 @@ permissions:
 
 jobs:
   Test:
-    strategy:
-      matrix:
-        cc: [ gcc, clang ]  
-      fail-fast: false
     runs-on: macos-15
     steps:
     - uses: actions/checkout@v4
     - name: Dependencies
       run: |
         brew install autoconf
+        brew install automake
     - name: configure
       run: |
         autoreconf -iv
