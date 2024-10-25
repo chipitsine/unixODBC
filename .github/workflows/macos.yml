@@ -12,6 +12,9 @@ jobs:
     runs-on: macos-15
     steps:
     - uses: actions/checkout@v4
+    - name: Dependencies
+      run: |
+        brew install autoconf
     - name: configure
       run: |
         autoreconf -iv
