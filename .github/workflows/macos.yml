@@ -1,0 +1,23 @@
+on: [ push, pull_request, workflow_dispatch ]
+
+permissions:
+  contents: read
+
+jobs:
+  Test:
+    strategy:
+      matrix:
+        cc: [ gcc, clang ]  
+      fail-fast: false
+    runs-on: macos-15
+    steps:
+    - uses: actions/checkout@v4
+    - name: configure
+      run: |
+        autoreconf -iv
+        ./configure
+    - name: build
+      run: |
+        make
+
+
