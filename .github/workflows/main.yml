@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         platform: [
-          { cc: gcc,   MAKE_EXTRAFLAGS: "AM_MAKEFLAGS=CFLAGS=-Werror" },
+          { cc: gcc,   MAKE_EXTRAFLAGS: "AM_MAKEFLAGS=CFLAGS=-Werror -Wnull-dereference" },
           { cc: clang, MAKE_EXTRAFLAGS: "" }
         ]
       fail-fast: false
