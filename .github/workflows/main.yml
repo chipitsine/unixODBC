@@ -9,7 +9,7 @@ jobs:
       matrix:
         platform: [
           { cc: gcc,   MAKE_EXTRAFLAGS: "AM_MAKEFLAGS=CFLAGS='-Werror -Wnull-dereference'" },
-          { cc: clang, MAKE_EXTRAFLAGS: "" }
+          { cc: clang, MAKE_EXTRAFLAGS: "AM_MAKEFLAGS=CFLAGS='-Werror -Wnull-dereference'" }
         ]
       fail-fast: false
     name: ${{ matrix.platform.cc }}
